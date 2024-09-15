@@ -5,7 +5,7 @@ import { motion, useAnimation, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { MapPin, Heart, Users, Phone, Award, ChevronDown, Home, Briefcase, Book, Coffee, Menu, X, Clock, ArrowRight, Gift, Star } from 'lucide-react'
+import { MapPin, Heart, Users, Phone, Award, ChevronDown, Home, Briefcase, Book, Coffee, Menu, X, Clock, ArrowRight, Gift, Star, CheckCircle } from 'lucide-react'
 import Image from 'next/image'
 
 const TypewriterEffect = ({ text }: { text: string }) => {
@@ -84,8 +84,15 @@ export function LandingPageComponent() {
               StreetGuardian
             </Link>
             <div className="md:hidden">
-              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="bg-gradient-to-r from-purple-600 to-pink-600 p-2 rounded-md">
-                {isMenuOpen ? <X size={24} className="text-white" /> : <Menu size={24} className="text-white" />}
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="bg-gradient-to-r from-purple-600 to-pink-600 p-2 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-110"
+              >
+                {isMenuOpen ? (
+                  <X size={24} className="text-white" />
+                ) : (
+                  <Menu size={24} className="text-white" />
+                )}
               </button>
             </div>
             <ul className="hidden md:flex space-x-6">
@@ -164,30 +171,37 @@ export function LandingPageComponent() {
         <Section>
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Our Mission</h2>
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <p className="text-lg text-gray-600 mb-4">
-                  At StreetGuardian, we believe that everyone deserves a safe place to call home. Our mission is to bridge the gap between those experiencing homelessness and the resources they need to rebuild their lives.
-                </p>
-                <p className="text-lg text-gray-600 mb-4">
-                  Through innovative technology and compassionate community engagement, we aim to:
-                </p>
-                <ul className="list-disc list-inside text-gray-600 space-y-2">
-                  <li>Provide immediate assistance to those in crisis</li>
-                  <li>Connect individuals with long-term support and housing solutions</li>
-                  <li>Empower communities to take an active role in addressing homelessness</li>
-                  <li>Advocate for systemic changes to prevent homelessness</li>
-                </ul>
-              </div>
-              <div className="relative">
-                <Image
-                  src="/placeholder.svg?height=400&width=600"
-                  alt="Community support illustration"
-                  width={600}
-                  height={400}
-                  className="rounded-lg shadow-lg"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-20 rounded-lg"></div>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <div className="grid md:grid-cols-2">
+                <div className="p-8">
+                  <h3 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Bridging the Gap</h3>
+                  <p className="text-gray-600 mb-4">
+                    At StreetGuardian, we believe that everyone deserves a safe place to call home. Our mission is to bridge the gap between those experiencing homelessness and the resources they need to rebuild their lives.
+                  </p>
+                  <ul className="space-y-2">
+                    {[
+                      'Provide immediate assistance to those in crisis',
+                      'Connect individuals with long-term support',
+                      'Empower communities to address homelessness',
+                      'Advocate for systemic changes'
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start">
+                        <CheckCircle className="text-green-500 mr-2 mt-1 flex-shrink-0" size={20} />
+                        <span className="text-gray-600">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="relative h-64 md:h-auto">
+                  <Image
+                    src="/placeholder.svg?height=400&width=600"
+                    alt="Community support illustration"
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded-b-lg md:rounded-r-lg md:rounded-bl-none"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-20"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -234,7 +248,7 @@ export function LandingPageComponent() {
                     className="flex items-center bg-white p-6 rounded-lg shadow-md"
                     whileHover={springAnimation}
                   >
-                    <div className="bg-gradient-to-r from-purple-200 to-pink-200 p-4 rounded-full mr-6">
+                    <div className="bg-gradient-to-r from-purple-200 to-pink-200 p-4 rounded-full mr-6 flex-shrink-0">
                       <item.icon size={32} className="text-purple-600" />
                     </div>
                     <div>
@@ -252,7 +266,7 @@ export function LandingPageComponent() {
         <Section>
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Services We Offer</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 { icon: Home, title: 'Emergency Shelter Locator', description: 'Find nearby shelters with real-time availability and instant booking options' },
                 { icon: Book, title: 'Resource Directory', description: 'Comprehensive list of local support services, including food banks, job training, and healthcare' },
@@ -347,9 +361,9 @@ export function LandingPageComponent() {
         <Section>
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Rewards Program</h2>
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <div className="grid md:grid-cols-2 gap-8 items-center">
-                <div>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <div className="grid md:grid-cols-2">
+                <div className="p-8">
                   <h3 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Earn Points, Make a Difference</h3>
                   <p className="text-gray-600 mb-4">
                     Our rewards program recognizes and incentivizes your contributions to the community. Earn points for various activities and redeem them for exclusive benefits or donate them to causes you care about.
@@ -367,14 +381,15 @@ export function LandingPageComponent() {
                       </li>
                     ))}
                   </ul>
+                  <Button className="mt-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white">Join Rewards Program</Button>
                 </div>
-                <div className="relative">
+                <div className="relative h-64 md:h-auto">
                   <Image
-                    src="/placeholder.svg?height=300&width=400"
+                    src="/placeholder.svg?height=400&width=600"
                     alt="Rewards program illustration"
-                    width={400}
-                    height={300}
-                    className="rounded-lg shadow-lg"
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded-b-lg md:rounded-r-lg md:rounded-bl-none"
                   />
                   <div className="absolute top-4 right-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white p-2 rounded-full">
                     <Star size={24} />
@@ -415,14 +430,14 @@ export function LandingPageComponent() {
               <p className="text-lg mb-6 text-center text-gray-600">
                 Stay updated with our latest initiatives, success stories, and volunteer opportunities. Together, we can make a lasting difference in the lives of those experiencing homelessness.
               </p>
-              <form className="flex flex-col md:flex-row gap-4 justify-center items-center">
+              <form className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="w-full md:w-auto px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                 />
                 <motion.div whileHover={springAnimation}>
-                  <Button className="w-full md:w-auto bg-gradient-to-r from-purple-600 to-pink-600 text-white">
+                  <Button className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-pink-600 text-white">
                     Subscribe
                   </Button>
                 </motion.div>
@@ -457,7 +472,7 @@ export function LandingPageComponent() {
 
       <footer className="bg-gradient-to-r from-purple-800 to-pink-800 text-white py-12">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
               <h3 className="text-lg font-semibold mb-4">StreetGuardian</h3>
               <p className="text-purple-200">Empowering communities to support those in need</p>

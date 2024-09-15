@@ -5,7 +5,7 @@ import { motion, useAnimation, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { MapPin, Heart, Users, Phone, Award, ChevronDown, Home, Briefcase, Book, Coffee, Menu, X, Clock, ArrowRight, Gift, Star, CheckCircle } from 'lucide-react'
+import { MapPin, Heart, Users, Phone,  ChevronDown, Home, Briefcase, Book, Coffee, Menu, X, Clock, Gift, Star, CheckCircle } from 'lucide-react'
 import Image from 'next/image'
 
 const TypewriterEffect = ({ text }: { text: string }) => {

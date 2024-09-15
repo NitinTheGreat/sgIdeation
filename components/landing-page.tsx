@@ -232,7 +232,7 @@ export function LandingPageComponent() {
           </div>
         </Section>
 
-        <Section id="steps" ref={stepsRef}>
+        <Section id="steps" >
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Our Step-by-Step Approach</h2>
             <div className="space-y-8">
